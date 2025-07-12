@@ -6,6 +6,18 @@ Examples:
 https://texample.net/porter-model/
 
 
+online
+
+
+```
+https://www.papeeria.com/p/32544d8d-2c35-44e7-b593-92c1b96bfcf5#/main.tex
+```
+
+Formula
+
+
+https://arachnoid.com/latex/
+
 
 
 
@@ -16,6 +28,11 @@ https://texample.net/porter-model/
 
 http://wiki.linuxcnc.org/cgi-bin/wiki.pl?LinuxCNC_Supported_Hardware
 
+https://forum.v1e.com/t/inexpensive-linuxcnc-interface-revisited-deja-vu-or-just-another-rabbit-hole/38475/2
+
+
+https://forum.linuxcnc.org/9-installing-linuxcnc/39779-rpi4-raspbian-64-bit-linuxcnc?start=150#253623
+https://www.youtube.com/watch?v=Cz7sWNeMFCQ
 
 
 

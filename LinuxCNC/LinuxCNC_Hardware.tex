@@ -14,7 +14,6 @@
 \usepackage[active,tightpage,floats]{preview}
 \setlength\PreviewBorder{5pt}%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEGIN DOCUMENT
 \begin{document}
@@ -32,16 +31,25 @@ comment/.style={rectangle, inner sep= 5pt, text width=4cm, node distance=0.25cm,
 force/.style={rectangle, draw, fill=black!10, inner sep=5pt, text width=4cm, text badly centered, minimum height=1.2cm, font=\bfseries\footnotesize\sffamily}] 
 
 % Draw forces
-\node [force] (rivalry) {Rivalry among existing competitors};
-\node [force, above of=rivalry] (substitutes) {Threat of substitutes};
+\node [force] (HEAD) {LINUXCNC\_PC};
+\node [force, below of=HEAD] (PCI) {PCI CARD/PCIe CARD};
+%\node [force, right=5cm of=PCI] (EtherCAT) {EtherCAT};
+\node[force, right=1cm of PCI] (EtherCAT) {EtherCAT};
+\node[force, right=1cm of EtherCAT] (FPGA) {I/O FPGA Cards};
+
+
+
+%\node [force] (HEAD) {PCI CARD/PCIe CARD};
+%\node [force, above of=HEAD] (substitutes) {LINUXCNC PC 1};
+
 %\node[draw=blue, fill=yellow!20, thick, rounded corners, text width=3cm, align=center, below=of X]
 % (myNode) {Example node\\with styling};
 
-\node [draw=blue, fill=yellow!20, thick, rounded corners, text width=3cm, align=center, below=of  substitutes] (state) {draw=blue, fill=yellow!20, thick, rounded corners, text width=3cm, align=center, below=of  substitutes};
-\node [force, text width=3cm, dashed, left=1cm of substitutes] (state) {Public policies};
-\node [force, left=1cm of rivalry] (suppliers) {Bargaining power of suppliers};
-\node [force, right=1cm of rivalry] (users) {Bargaining power of users};
-\node [force, below of=rivalry] (entrants) {Threat of new entrants};
+%\node [draw=blue, fill=yellow!20, thick, rounded corners, text width=3cm, align=center, below=of  substitutes] (state) {draw=blue, fill=yellow!20, thick, rounded corners, text width=3cm, align=center, below=of  substitutes};
+%\node [force, text width=3cm, dashed, left=1cm of substitutes] (state) {Public policies};
+% \node [force, left=1cm of HEAD] (suppliers) {Bargaining power of suppliers};
+% \node [force, right=1cm of HEAD] (users) {Bargaining power of users};
+%\node [force, below of=HEAD] (entrants) {LINUXCNC PC};
 
 
 
@@ -68,26 +76,38 @@ force/.style={rectangle, draw, fill=black!10, inner sep=5pt, text width=4cm, tex
 
 
 
-% SUPPLIERS
-\node [comment, below=0.25cm of suppliers] {(+) Efficiency\\
-(+) Attracting other developers\\
-(+) Creating a Chrome community};
+% PCI
+% \node [comment, right=0.25cm of PCI] {
+% (+) PCI (Peripheral Component Interconnect): Older standard, slower data transfer speeds (up to 133 MB/s).\\
+% (+) PCIe (PCI Express): Newer, faster standard with data rates up to 32 GB/s (for PCIe 5.0).\\
+% (+) Form Factor: PCI uses 32-bit or 64-bit slots, while PCIe uses lane-based architecture (x1, x4, x8, x16).\\
+% (+) PCI is an older parallel interface; PCIe (PCI Express) is a newer high-speed serial interface.\\
+% (+) PCIe offers higher bandwidth and scalability via lanes (x1, x4, x8, x16), unlike fixed PCI.\\
+% (+) PCIe slots are physically different and not backward compatible with PCI cards.};
 
-% RIVALRY
-\node [comment, below=0.25 of rivalry] (comment-rivalry) {(+) A war against Microsoft\\
-(+) Limiting sunk costs\\
-(+) Coopetition};
+
+
+% FPGA
+\node [comment, below=0.25cm of FPGA] {
+(\*)https://github.com/LinuxCNC/mesaflash};
+
+% \node [comment, below=0.25 of HEAD] (comment-HEAD) {(+) A war against Microsoft\\
+% (+) Limiting sunk costs\\
+% (+) Coopetition};
+
+
+
 
 
 % SUBSTITUTES
-% \node [comment, right=0.25 of rivalry] {(+) Portability};
- \node [comment, left=0.25 of rivalry] {(+) Portability};
+% \node [comment, right=0.25 of HEAD] {(+) Portability};
+% \node [comment, left=0.25 of HEAD] {(+) Portability};
 
 
 % USERS
-\node [comment, below=0.25 of users] {(+) Increasing the user information\\
-(+) Reducing the switching costs};
-
+%\node [comment, below=0.25 of users] {(+) Increasing the user information\\
+%(+) Reducing the switching costs};
+%
 % NEW ENTRANTS
 % \node [comment, right=0.25 of entrants] {(+) EC vs. Microsoft};
 
@@ -102,18 +122,30 @@ force/.style={rectangle, draw, fill=black!10, inner sep=5pt, text width=4cm, tex
 
 
 % PUBLIC POLICIES
-	\node [comment, text width=3cm, below=0.25 of state] {(+) Positively framed\\
-	(+) Transparency\\
-	(--) A new monopoly?};
+%	\node [comment, text width=3cm, below=0.25 of state] {(+) Positively framed\\
+%	(+) Transparency\\
+%	(--) A new monopoly?};
+
+
+
+
 
 %%%%%%%%%%%%%%%%
 
 % Draw the links between forces
-\path[->,thick] 
-(substitutes) edge (rivalry)
-(suppliers) edge (rivalry)
-(users) edge (rivalry)
-(entrants) edge (comment-rivalry);
+% \path[->,thick]  (PCI) edge (HEAD);
+% \path[->,thick, bend left]  (HEAD) edge (PCI);    % Curved left
+% \path[->,thick, bend right] (PCI) edge (HEAD);    % Curved right
+% \path[->,thick, out=45, in=135] (PCI) edge (HEAD);  % Custom curve
+% \path[<->, thick] (HEAD) edge (PCI);  % Arrow both directions
+% \path[->, thick, dashed] (HEAD) edge (PCI);     % Dashed arrow
+\path[->, ultra thick, dotted] (HEAD) edge (PCI);
+\path[->, ultra thick, dotted] (HEAD) edge (EtherCAT);
+\path[->, ultra thick, dotted] (HEAD) edge (FPGA);
+
+% (suppliers) edge (HEAD)
+% (users) edge (HEAD)
+%(entrants) edge (comment-HEAD);
 
 \end{tikzpicture} 
 \caption{LinuxCNC Hardware}
