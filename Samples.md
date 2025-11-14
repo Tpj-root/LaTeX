@@ -32,9 +32,9 @@ Compiled with xpdf version 4.04
 |------|-----|--------|--------|--|
 | 1 | [Periodic-Table](https://texample.net/periodic-table-of-chemical-elements/)  | Tested OK | [File](Samples/S_N_0001.tex) |[File](Samples/S_N_0001.pdf) |
 | 1 | [tcp-state-machine](https://texample.net/tcp-state-machine/) | Tested OK | [File](Samples/S_N_0002.tex) |[File](Samples/S_N_0002.pdf) |
-| 3 | https://example.com/demo2 | Another test resource | Tested OK |    |
-| 4 | https://example.com/demo3 | Useful reference page | Failed |    |
-| 5 | https://example.com/demo4 | External documentation | Tested OK |    |
+| 3 | https://example.com/demo2 | Tested OK |    |    |
+| 4 | https://example.com/demo3 | Failed |    |    |
+| 5 | https://example.com/demo4  | Tested OK |    |    |
 
 
 
