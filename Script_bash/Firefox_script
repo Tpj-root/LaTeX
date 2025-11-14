@@ -1,0 +1,49 @@
+
+
+```js
+(function(){
+  const links = Array.from(document.querySelectorAll('a'))
+                     .map(a => a.href.trim())
+                     .filter(h => h);
+  const csvContent = 'url\n' + links.map(h => `"${h.replace(/"/g,'""')}"`).join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'links.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  console.log(`Downloaded ${links.length} links as links.csv`);
+})();
+```
+
+### How it works:
+
+* Selects all `<a>` tags, gets `href` attributes, trims and filters empty ones.
+* Builds a CSV string with a header (`url`) and quoting/escaping of `"` characters.
+* Creates a downloadable blob and triggers a download named `links.csv`.
+* Logs how many links were downloaded.
+
+### Things to note:
+
+* It captures only visible links in the DOM at the time. If the page dynamically loads further links (via JS) you’ll need to scroll or trigger loading.
+* If you want only links **matching a pattern** (e.g., “maze” in URL), you can filter `links.map(...).filter(h => h.includes('maze'))`.
+* If you want more fields (e.g., link text + URL), you can modify the map:
+
+  ```js
+  .map(a => [a.innerText.trim(), a.href.trim()])
+  ```
+
+  and adjust CSV header accordingly.
+
+
+
+
+
+
+grep -E 'https://texample.net/author/.+/, [0-9]+' authors.txt
+
+
+
